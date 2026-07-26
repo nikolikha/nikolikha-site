@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — nikolikha</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="profile.html">
+<div class="site-frame">
+  <div id="site-nav"></div>
+
+  <header class="hero" style="padding:44px 28px 36px;">
+    <div class="avatar" role="img" aria-label="Profile picture"></div>
+    <span class="hero-sub">the person behind the page</span>
+    <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.2rem);">Profile</h1>
+  </header>
+
+  <section class="section-pad">
+    <div class="cols-2">
+      <div class="card card-pad card-byf reveal">
+        <span class="eyebrow">About / BYF</span>
+        <ul class="pill-list byf-list">
+          <li>'00 liner · she/her</li>
+          <li>filipino</li>
+          <li>keyboard smasher, multi-fandom</li>
+          <li>swears (a lot), chaotic</li>
+          <li>scared of DMs but will reply if i'm comfy with u</li>
+          <li>randomly replies to posts I like even if we aren't close</li>
+          <li>don't hesitate to interact — I promise it's welcome :D</li>
+        </ul>
+      </div>
+      <div class="card card-pad card-dnfi reveal">
+        <span class="eyebrow">DNFI</span>
+        <ul class="pill-list dni-list">
+          <li>dds/marcos loyalist/right winger/apolitical</li>
+          <li>homophobic, racist, misogynistic</li>
+          <li>has superiority complex about media preference</li>
+          <li>constantly hating on my faves — the world has enough problems, let's just stan in peace</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="cols-2">
+      <div class="card card-pad reveal">
+        <span class="eyebrow">Notes</span>
+        <h3 style="margin-bottom:10px;">A quick word</h3>
+        <p class="small muted" style="margin-bottom:16px;">Short thoughts and updates, kept here instead of a
+        full separate blog.</p>
+        <p class="small" style="margin-bottom:6px;"><strong>July 26, 2026</strong></p>
+        <p class="small">Hi — welcome. This corner of the internet is where I'm keeping the fan content,
+        the graphic design posters, and a running log of everything I read and watch, scored with a rating
+        system I built for myself.</p>
+      </div>
+      <div class="card card-pad reveal">
+        <h3 style="margin-bottom:10px;">Elsewhere</h3>
+        <p class="small muted">Find the rest of me around the internet.</p>
+        <ul class="pill-list" id="profile-socials"></ul>
+        <a class="btn" href="mailto:you@example.com" style="margin-top:16px;">Send a message</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const list = document.getElementById("profile-socials");
+    list.innerHTML = SITE_CONFIG.socials
+      .filter(s => s.url)
+      .map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`)
+      .join("") || `<li class="muted">Add your links in js/config.js</li>`;
+  });
+</script>
+</body>
+</html>

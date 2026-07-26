@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — nikolikha</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="gallery.html">
+<div class="site-frame">
+  <div id="site-nav"></div>
+
+  <header class="hero" style="padding:50px 28px 40px;">
+    <span class="hero-sub">graphic design &amp; edits</span>
+    <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.2rem);">Gallery</h1>
+    <p class="muted small">Posters, fan edits, and other things I've designed. Click a tile for a closer look.</p>
+  </header>
+
+  <section class="section-pad">
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <div id="site-footer"></div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" style="display:none;margin-bottom:14px;">
+    <div id="lightbox-placeholder" style="aspect-ratio:3/4;background:linear-gradient(155deg, var(--peach), var(--blush));margin-bottom:14px;"></div>
+    <h3 id="lightbox-title"></h3>
+    <p class="small muted" id="lightbox-tag"></p>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script src="js/gallery-data.js"></script>
+<script>
+  const grid = document.getElementById("gallery-grid");
+  grid.innerHTML = GALLERY_ITEMS.map((item, i) => `
+    <div class="gallery-item" data-i="${i}" ${item.image ? `style="background-image:url('${item.image}');background-size:cover;background-position:center;"` : ""}>
+      ${item.image ? "" : `<span>${item.title}</span>`}
+    </div>`).join("");
+
+  const lightbox = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+  const lbPlaceholder = document.getElementById("lightbox-placeholder");
+  const lbTitle = document.getElementById("lightbox-title");
+  const lbTag = document.getElementById("lightbox-tag");
+
+  grid.addEventListener("click", (e) => {
+    const tile = e.target.closest(".gallery-item");
+    if (!tile) return;
+    const item = GALLERY_ITEMS[tile.dataset.i];
+    lbTitle.textContent = item.title;
+    lbTag.textContent = item.tag;
+    if (item.image){
+      lbImg.src = item.image; lbImg.style.display = "block";
+      lbPlaceholder.style.display = "none";
+    } else {
+      lbImg.style.display = "none";
+      lbPlaceholder.style.display = "block";
+    }
+    lightbox.classList.add("is-open");
+  });
+
+  document.getElementById("lightbox-close").addEventListener("click", () => lightbox.classList.remove("is-open"));
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.classList.remove("is-open"); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") lightbox.classList.remove("is-open"); });
+</script>
+</body>
+</html>

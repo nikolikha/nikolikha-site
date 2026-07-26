@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — nikolikha</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="blog.html">
+<div class="site-frame">
+  <div id="site-nav"></div>
+
+  <header class="hero" style="padding:50px 28px 40px;">
+    <span class="hero-sub">rambles &amp; updates</span>
+    <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.2rem);">Blog</h1>
+    <p class="muted small">Click a post to read the rest.</p>
+  </header>
+
+  <section class="section-pad">
+    <div id="blog-list"></div>
+  </section>
+
+  <div id="site-footer"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script src="js/blog-data.js"></script>
+<script>
+  const list = document.getElementById("blog-list");
+  list.innerHTML = BLOG_POSTS.map((post, i) => `
+    <article class="blog-item" data-i="${i}">
+      <span class="blog-date">${post.date}</span>
+      <h3 class="blog-title">${post.title}</h3>
+      <p class="blog-excerpt">${post.excerpt}</p>
+      <div class="blog-full">${post.body}</div>
+      <span class="blog-readmore">Read more</span>
+    </article>`).join("");
+
+  list.addEventListener("click", (e) => {
+    const item = e.target.closest(".blog-item");
+    if (!item) return;
+    item.classList.toggle("is-open");
+    const link = item.querySelector(".blog-readmore");
+    link.textContent = item.classList.contains("is-open") ? "Show less" : "Read more";
+  });
+</script>
+</body>
+</html>
