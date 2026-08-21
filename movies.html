@@ -1,196 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movies — nikolikha</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies — nikolikha</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body data-page="movies.html">
-<div class="site-frame">
-  <div id="site-nav"></div>
+  <div class="site-frame">
+    <div id="site-nav"></div>
 
-  <header class="hero" style="padding:50px 28px 40px;">
-    <span class="hero-sub">watch log</span>
-    <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.2rem);">Movies/Shows</h1>
-  </header>
+    <header class="hero" style="padding:50px 28px 40px;">
+      <span class="hero-sub">watch log</span>
+      <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.2rem);">Movies/Shows</h1>
+    </header>
 
-  <section class="section-pad">
-    <span class="eyebrow">All-time favorites</span>
-    <h2>What I'll rewatch forever</h2>
-    <div class="fave-grid reveal" style="margin-top:24px;">
-      <div class="fave-item">
-        <div class="fave-cover"></div>
-        <div class="fave-title">Movie / Show Title</div>
-        <div class="fave-sub">Year</div>
-      </div>
-      <div class="fave-item">
-        <div class="fave-cover"></div>
-        <div class="fave-title">Movie / Show Title</div>
-        <div class="fave-sub">Year</div>
-      </div>
-      <div class="fave-item">
-        <div class="fave-cover"></div>
-        <div class="fave-title">Movie / Show Title</div>
-        <div class="fave-sub">Year</div>
-      </div>
-      <div class="fave-item">
-        <div class="fave-cover"></div>
-        <div class="fave-title">Movie / Show Title</div>
-        <div class="fave-sub">Year</div>
-      </div>
-    </div>
-    <p class="small muted" style="margin-top:18px;">Edit this list directly in <code>books.html</code> — swap in your real favorite movies, shows, and characters here.</p>
-  </section>
-
-  <section class="section-pad">
-    <div class="rater-cta">
-      <div>
-        <span class="eyebrow" style="margin-bottom:2px;">Rate a movie</span>
-        <p class="muted small mt-0">Answer a few questions on the same weighted system I use for movies and shows — nothing you
-        enter is saved to this site, but you can download your result as an image.</p>
-      </div>
-      <button class="btn btn-primary" id="rater-toggle">Open the rater →</button>
-    </div>
-
-    <div class="rater-panel is-collapsed" id="rater-panel">
-      <div class="rt-toggle" id="system-toggle" role="group" aria-label="Choose rating system">
-        <button data-sys="movie" class="active">Fiction</button>
-        <button data-sys="nfMovie">Non-Fiction</button>
-      </div>
-
-      <div class="cols-2" style="align-items:start;">
+    <section class="section-pad">
+      <div class="cols-2">
         <div>
-          <div class="rt-title-row">
-            <input type="text" id="title-input" placeholder="Movie or show title...">
+          <span class="eyebrow">Last watched</span>
+          <div class="current-card reveal cols-2">
+            <div><img class="current-photo" src="/assets/current-film.jpg"></div>
+            <div>
+              <h3 style="margin-bottom:2px;">My Royal Nemesis</h3>
+              <p class="small muted mt-0">(2026)</p>
+            </div>
+            <div>
+              <p class="small muted mt-0">A legendary villain from the Joseon era is reincarnated in the body of a
+                struggling modern actress and clashes with a cold, calculating chaebol heir, igniting an intense
+                love-hate romance that transcends centuries.</p>
+            </div>
           </div>
-          <form id="rating-form"></form>
         </div>
-
-        <div class="rt-result">
-          <span class="eyebrow" style="color:var(--ink);">Overall</span>
-          <div class="rt-score-big" id="score-big">0.0</div>
-          <div class="small" style="opacity:.8;">out of 100</div>
-          <div class="rt-stars" id="score-stars">—</div>
-          <div class="rt-grade" id="score-grade"></div>
-          <div class="rt-progress" id="score-progress">0 / 0 answered</div>
-          <div class="rt-error" id="rt-error" style="display:none;"></div>
-          <div id="score-bars"></div>
-          <button class="btn btn-light" id="save-btn" style="margin-top:22px;width:100%;justify-content:center;">Download my rating as an image</button>
+        <div>
+          <h2>Top 5 of 2025</h2>
+          <span class="eyebrow">Personal faves from all the films/shows I watched last year</span>
+          <div class="cols-2">
+            <ol class="track-list" style="margin-top:12px;">
+              <li>Falcon and the Winter Soldier <span class="top4-sub">(2021)</span></li>
+              <li>Captain America: The First Avenger <span class="top4-sub">(2011)</span></li>
+              <li>Wake Up Dead Man <span class="top4-sub">(2025)</span></li>
+              <li>Knives Out <span class="top4-sub">(2019)</span></li>
+              <li>The Apartment <span class="top4-sub">(1960)</span></li>
+            </ol>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div id="site-footer"></div>
-</div>
+    <section class="section-pad">
+      <div class="favorites-row">
+        <div>
+          <span class="eyebrow">All-time favorites</span>
+          <div class="top4-grid">
+            <div class="top4-box reveal">
+              <div class="top4-head"><span class="top4-name">Catching Fire</span></div>
+              <div><img class="top4-photo" src="assets/top-film-1.jpg"></div>
+              <div class="top4-sub">2013</div>
+            </div>
+            <div class="top4-box reveal">
+              <div class="top4-head"><span class="top4-name">Mulan</span></div>
+              <div><img class="top4-photo" src="assets/top-film-2.jpg"></div>
+              <div class="top4-sub">1998</div>
+            </div>
+            <div class="top4-box reveal">
+              <div class="top4-head"><span class="top4-name">Avengers</span></div>
+              <div><img class="top4-photo" src="assets/top-film-3.jpg"></div>
+              <div class="top4-sub">2012</div>
+            </div>
+            <div class="top4-box reveal">
+              <div class="top4-head"><span class="top4-name">To All the Boys I've Loved Before</span></div>
+              <div><img class="top4-photo" src="assets/top-film-4.jpg"></div>
+              <div class="top4-sub">2018</div>
+            </div>
+          </div>
+        </div>
 
-<div class="share-modal" id="share-modal">
-  <div class="share-modal-inner">
-    <button class="share-modal-close" id="share-modal-close" aria-label="Close">&times;</button>
-    <div class="share-card" id="share-card"></div>
-    <div class="share-modal-actions">
-      <button class="btn btn-primary" id="download-btn">Download PNG</button>
+        <div>
+          <h2>What I'm into</h2>
+          <div class="cat-grid">
+            <div class="cat-block reveal">
+              <span class="eyebrow">Shows</span>
+              <p class="muted small">Avatar: The Last Airbender, Gravity Falls, Adventure Time, Toradora, The Good Son,
+                What Lies Beneath, Trese, The Great, Spy x Family</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">K-dramas</span>
+              <p class="muted small">Mr. Queen, Goblin, Hotel del Luna, While you were Sleeping, Go Back Couple,
+                Weightlifting Fairy Kim Bok Joo, Money Heist: Korea, My Royal Nemesis</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">Movies</span>
+              <p class="muted small">MCU movies until Avengers: Endgame, The Hunger Games series, A street cat named
+                Bob, The Ward, Hoppers, Knives Out films</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">Characters</span>
+              <p class="muted small">Han Seojun, SoBong, Iron Man, Thor, Kim Bok Joo, Jung Joon Hyung, Park Hoon,
+                Alexandra Trese, Zuko, the whole gaang, Ryuuji, Anya Forger</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">Actors</span>
+              <p class="muted small">Heo Namjun, Hwang Inyeop, Tom Holland, RDJ, Chris Hemsworth, Chris Evans, Park
+                Hae-soo</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">Actress</span>
+              <p class="muted small">Lee Sung Kyung, Shin Hye-sun, IU, Lim Jiyeon, Jennifer Lawrence, Liza Soberano,
+                Kaila Estrada, Maja Salvador</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">Ships</span>
+              <p class="muted small">zutara, cheolbong, seojun x jugyeong, bokjoo x joon hyung, taiga x ryuuji, park
+                hoon x oh soo hyun, shinsegye</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">IRL ships (not serious)</span>
+              <p class="muted small">tomdaya, namlee, shardon, gayeop, namjiyeon</p>
+            </div>
+            <div class="cat-block reveal">
+              <span class="eyebrow">YT channels</span>
+              <p class="muted small">kittisaurus/claireluvcat</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="rater-cta">
+        <div>
+          <span class="eyebrow" style="margin-bottom:2px;">Rate a movie</span>
+          <p class="muted small mt-0">Answer a few questions on the same weighted system I use for movies and shows —
+            nothing you
+            enter is saved to this site, but you can download your result as an image.</p>
+        </div>
+        <button class="btn btn-primary" id="rater-toggle">Open the rater →</button>
+      </div>
+
+      <div class="rater-panel is-collapsed" id="rater-panel">
+        <div class="rt-toggle" id="system-toggle" role="group" aria-label="Choose rating system">
+          <button data-sys="movie" class="active">Fiction</button>
+          <button data-sys="nfMovie">Non-Fiction</button>
+        </div>
+
+        <div class="cols-2" style="align-items:start;">
+          <div>
+            <div class="rt-title-row">
+              <input type="text" id="title-input" placeholder="Movie or show title...">
+            </div>
+            <form id="rating-form"></form>
+          </div>
+
+          <div class="rt-result">
+            <span class="eyebrow" style="color:var(--ink);">Overall</span>
+            <div class="rt-score-big" id="score-big">0.0</div>
+            <div class="small" style="opacity:.8;">out of 100</div>
+            <div class="rt-stars" id="score-stars">—</div>
+            <div class="rt-grade" id="score-grade"></div>
+            <div class="rt-progress" id="score-progress">0 / 0 answered</div>
+            <div class="rt-error" id="rt-error" style="display:none;"></div>
+            <div id="score-bars"></div>
+            <button class="btn btn-light" id="save-btn"
+              style="margin-top:22px;width:100%;justify-content:center;">Download my rating as an image</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="site-footer"></div>
+  </div>
+
+  <div class="share-modal" id="share-modal">
+    <div class="share-modal-inner">
+      <button class="share-modal-close" id="share-modal-close" aria-label="Close">&times;</button>
+      <div class="share-card" id="share-card"></div>
+      <div class="share-modal-actions">
+        <button class="btn btn-primary" id="download-btn">Download PNG</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="js/config.js"></script>
-<script src="js/site.js"></script>
-<script src="js/rating-data.js"></script>
-<script src="js/rating-tool.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script>
-(function(){
-  let currentSys = "movie";
-  let drawn = false;
-  const form = document.getElementById("rating-form");
-  const titleInput = document.getElementById("title-input");
-  const toggle = document.getElementById("system-toggle");
-  const modal = document.getElementById("share-modal");
-  const shareCard = document.getElementById("share-card");
-  const raterPanel = document.getElementById("rater-panel");
-  const raterToggleBtn = document.getElementById("rater-toggle");
+  <script src="js/config.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/rating-data.js"></script>
+  <script src="js/rating-tool.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    (function () {
+      let currentSys = "movie";
+      let drawn = false;
+      const form = document.getElementById("rating-form");
+      const titleInput = document.getElementById("title-input");
+      const toggle = document.getElementById("system-toggle");
+      const modal = document.getElementById("share-modal");
+      const shareCard = document.getElementById("share-card");
+      const raterPanel = document.getElementById("rater-panel");
+      const raterToggleBtn = document.getElementById("rater-toggle");
 
-  function draw(){
-    form.innerHTML = RatingTool.renderForm(currentSys);
-    updateScore();
-  }
+      function draw() {
+        form.innerHTML = RatingTool.renderForm(currentSys);
+        updateScore();
+      }
 
-  function updateScore(){
-    const result = RatingTool.computeScore(currentSys, form);
-    document.getElementById("score-big").textContent = result.overall.toFixed(1);
-    document.getElementById("score-stars").textContent = RatingTool.renderStars(result.stars);
-    document.getElementById("score-grade").textContent = `${result.gradeEmoji} ${result.grade} — ${result.gradeLabel}`;
-    document.getElementById("score-progress").textContent = `${result.answered} / ${result.total} answered`;
-    document.getElementById("score-bars").innerHTML = RatingTool.renderBreakdown(currentSys, result);
-    return result;
-  }
+      function updateScore() {
+        const result = RatingTool.computeScore(currentSys, form);
+        document.getElementById("score-big").textContent = result.overall.toFixed(1);
+        document.getElementById("score-stars").textContent = RatingTool.renderStars(result.stars);
+        document.getElementById("score-grade").textContent = `${result.gradeEmoji} ${result.grade} — ${result.gradeLabel}`;
+        document.getElementById("score-progress").textContent = `${result.answered} / ${result.total} answered`;
+        document.getElementById("score-bars").innerHTML = RatingTool.renderBreakdown(currentSys, result);
+        return result;
+      }
 
-  raterToggleBtn.addEventListener("click", () => {
-    const collapsed = raterPanel.classList.toggle("is-collapsed");
-    raterToggleBtn.textContent = collapsed ? "Open the rater →" : "Hide the rater";
-    if (!collapsed){
-      if (!drawn){ draw(); drawn = true; }
-      raterPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
+      raterToggleBtn.addEventListener("click", () => {
+        const collapsed = raterPanel.classList.toggle("is-collapsed");
+        raterToggleBtn.textContent = collapsed ? "Open the rater →" : "Hide the rater";
+        if (!collapsed) {
+          if (!drawn) { draw(); drawn = true; }
+          raterPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
 
-  toggle.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-sys]");
-    if (!btn) return;
-    currentSys = btn.dataset.sys;
-    [...toggle.children].forEach(b => b.classList.toggle("active", b === btn));
-    draw();
-  });
+      toggle.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-sys]");
+        if (!btn) return;
+        currentSys = btn.dataset.sys;
+        [...toggle.children].forEach(b => b.classList.toggle("active", b === btn));
+        draw();
+      });
 
-  const errorBox = document.getElementById("rt-error");
+      const errorBox = document.getElementById("rt-error");
 
-  form.addEventListener("change", () => {
-    updateScore();
-    errorBox.style.display = "none";
-  });
+      form.addEventListener("change", () => {
+        updateScore();
+        errorBox.style.display = "none";
+      });
 
-  titleInput.addEventListener("input", () => {
-    titleInput.classList.remove("field-error");
-    errorBox.style.display = "none";
-  });
+      titleInput.addEventListener("input", () => {
+        titleInput.classList.remove("field-error");
+        errorBox.style.display = "none";
+      });
 
-  document.getElementById("save-btn").addEventListener("click", () => {
-    const title = titleInput.value.trim();
-    const result = updateScore();
-    const errors = [];
-    if (!title) errors.push("Add a title before downloading.");
-    if (result.answered === 0) errors.push("Answer at least one question before downloading.");
+      document.getElementById("save-btn").addEventListener("click", () => {
+        const title = titleInput.value.trim();
+        const result = updateScore();
+        const errors = [];
+        if (!title) errors.push("Add a title before downloading.");
+        if (result.answered === 0) errors.push("Answer at least one question before downloading.");
 
-    titleInput.classList.toggle("field-error", !title);
+        titleInput.classList.toggle("field-error", !title);
 
-    if (errors.length){
-      errorBox.innerHTML = errors.join("<br>");
-      errorBox.style.display = "block";
-      if (!title) titleInput.focus();
-      return;
-    }
+        if (errors.length) {
+          errorBox.innerHTML = errors.join("<br>");
+          errorBox.style.display = "block";
+          if (!title) titleInput.focus();
+          return;
+        }
 
-    errorBox.style.display = "none";
-    shareCard.innerHTML = RatingTool.renderShareCard(currentSys, title, result);
-    modal.classList.add("is-open");
-  });
+        errorBox.style.display = "none";
+        shareCard.innerHTML = RatingTool.renderShareCard(currentSys, title, result);
+        modal.classList.add("is-open");
+      });
 
-  document.getElementById("share-modal-close").addEventListener("click", () => modal.classList.remove("is-open"));
-  modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("is-open"); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") modal.classList.remove("is-open"); });
+      document.getElementById("share-modal-close").addEventListener("click", () => modal.classList.remove("is-open"));
+      modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("is-open"); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") modal.classList.remove("is-open"); });
 
-  document.getElementById("download-btn").addEventListener("click", () => {
-    html2canvas(shareCard, { backgroundColor: null, scale: 2 }).then(canvas => {
-      const link = document.createElement("a");
-      const slug = (titleInput.value.trim() || "rating").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-      link.download = `${slug}-rating.png`;
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-    });
-  });
-})();
-</script>
+      document.getElementById("download-btn").addEventListener("click", () => {
+        html2canvas(shareCard, { backgroundColor: null, scale: 2 }).then(canvas => {
+          const link = document.createElement("a");
+          const slug = (titleInput.value.trim() || "rating").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+          link.download = `${slug}-rating.png`;
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        });
+      });
+    })();
+  </script>
 </body>
+
 </html>

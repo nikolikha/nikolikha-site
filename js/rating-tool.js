@@ -12,7 +12,7 @@
 
 const RatingTool = (() => {
 
-  const SWATCH_CYCLE = ["var(--peach-deep)", "var(--peach)", "var(--sage)", "var(--blush)"];
+  const SWATCH_CYCLE = ["var(--peach-deep)"];
 
   function letterGrade(overall){
     if (overall >= 95) return { grade: "A+", label: "Masterpiece", emoji: "🏆" };

@@ -1,4 +1,3 @@
-// Auto-generated rating logic, derived from the user's Book_Movie_Rater.xlsx
 const RATING_SYSTEMS = {
   "movie": {
     "label": "Fiction Movie / Series",

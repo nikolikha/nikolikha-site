@@ -1,5 +1,5 @@
 // ============================================================
-// SITE.JS — injects the nav + footer on every page from config.js,
+// injects the nav + footer on every page from config.js,
 // so the header/footer only need to be edited in one place.
 // ============================================================
 
