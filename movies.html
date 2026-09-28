@@ -146,26 +146,47 @@
           <button data-sys="nfMovie">Non-Fiction</button>
         </div>
 
-        <div class="cols-2" style="align-items:start;">
-          <div>
-            <div class="rt-title-row">
-              <input type="text" id="title-input" placeholder="Movie or show title...">
+        <div class="rt-wizard">
+          <div class="rt-wizard-head">
+            <div>
+              <span class="eyebrow">Rating progress</span>
+              <div class="rt-step-title" id="rt-step-title">Getting started</div>
             </div>
-            <form id="rating-form"></form>
+            <div class="rt-step-count" id="rt-step-count">1 / 1</div>
           </div>
 
-          <div class="rt-result">
-            <span class="eyebrow" style="color:var(--ink);">Overall</span>
-            <div class="rt-score-big" id="score-big">0.0</div>
-            <div class="small" style="opacity:.8;">out of 100</div>
-            <div class="rt-stars" id="score-stars">—</div>
-            <div class="rt-grade" id="score-grade"></div>
-            <div class="rt-progress" id="score-progress">0 / 0 answered</div>
-            <div class="rt-error" id="rt-error" style="display:none;"></div>
-            <div id="score-bars"></div>
-            <button class="btn btn-light" id="save-btn"
-              style="margin-top:22px;width:100%;justify-content:center;">Download my rating as an image</button>
+          <div class="rt-progress-track" aria-hidden="true">
+            <div class="rt-progress-fill" id="rt-wizard-progress"></div>
           </div>
+
+          <div class="rt-title-row">
+            <input type="text" id="title-input" placeholder="Movie or show title...">
+          </div>
+
+          <form id="rating-form"></form>
+
+          <div class="rt-wizard-actions">
+            <button type="button" class="btn btn-light" id="rt-prev">← Previous</button>
+            <div class="rt-answer-progress small" id="score-progress">0 / 0 answered</div>
+            <button type="button" class="btn btn-primary" id="rt-next">Next →</button>
+          </div>
+
+          <div class="rt-final-result" id="rt-final-result" hidden>
+            <div class="rt-result">
+              <span class="eyebrow" style="color:var(--ink);">Final rating</span>
+              <div class="rt-score-big" id="score-big">0.0</div>
+              <div class="small" style="opacity:.8;">out of 100</div>
+              <div class="rt-stars" id="score-stars">—</div>
+              <div class="rt-grade" id="score-grade"></div>
+              <div id="score-bars"></div>
+              <button class="btn btn-light" id="save-btn"
+                style="margin-top:22px;width:100%;justify-content:center;">Download my rating as an image</button>
+              <button type="button" class="btn btn-primary" id="rt-revise"
+                style="margin-top:10px;width:100%;justify-content:center;">Review answers</button>
+            </div>
+          </div>
+
+          <div class="rt-error" id="rt-error" style="display:none;"></div>
         </div>
       </div>
     </section>
@@ -192,6 +213,9 @@
     (function () {
       let currentSys = "movie";
       let drawn = false;
+      let currentStep = 0;
+      let finished = false;
+
       const form = document.getElementById("rating-form");
       const titleInput = document.getElementById("title-input");
       const toggle = document.getElementById("system-toggle");
@@ -199,20 +223,87 @@
       const shareCard = document.getElementById("share-card");
       const raterPanel = document.getElementById("rater-panel");
       const raterToggleBtn = document.getElementById("rater-toggle");
+      const prevBtn = document.getElementById("rt-prev");
+      const nextBtn = document.getElementById("rt-next");
+      const reviseBtn = document.getElementById("rt-revise");
+      const stepTitle = document.getElementById("rt-step-title");
+      const stepCount = document.getElementById("rt-step-count");
+      const wizardProgress = document.getElementById("rt-wizard-progress");
+      const finalResult = document.getElementById("rt-final-result");
+      const errorBox = document.getElementById("rt-error");
 
-      function draw() {
-        form.innerHTML = RatingTool.renderForm(currentSys);
-        updateScore();
+      function getSteps() { return RATING_SYSTEMS[currentSys].categories; }
+
+      function updateProgress(result) {
+        const steps = getSteps();
+        const displayStep = finished ? steps.length : currentStep + 1;
+        stepCount.textContent = finished ? "Complete" : `${displayStep} / ${steps.length}`;
+        wizardProgress.style.width = `${(displayStep / steps.length) * 100}%`;
+        stepTitle.textContent = finished
+          ? "Your final rating"
+          : `${steps[currentStep].name} · ${steps[currentStep].weightPct}%`;
+        prevBtn.disabled = currentStep === 0 || finished;
+        nextBtn.textContent = currentStep === steps.length - 1 ? "Done ✓" : "Next →";
+        nextBtn.disabled = finished;
+        document.getElementById("score-progress").textContent =
+          `${result.answered} / ${result.total} answered`;
       }
 
       function updateScore() {
         const result = RatingTool.computeScore(currentSys, form);
         document.getElementById("score-big").textContent = result.overall.toFixed(1);
         document.getElementById("score-stars").textContent = RatingTool.renderStars(result.stars);
-        document.getElementById("score-grade").textContent = `${result.gradeEmoji} ${result.grade} — ${result.gradeLabel}`;
-        document.getElementById("score-progress").textContent = `${result.answered} / ${result.total} answered`;
-        document.getElementById("score-bars").innerHTML = RatingTool.renderBreakdown(currentSys, result);
+        document.getElementById("score-grade").textContent =
+          `${result.gradeEmoji} ${result.grade} — ${result.gradeLabel}`;
+        document.getElementById("score-bars").innerHTML =
+          RatingTool.renderBreakdown(currentSys, result);
+        updateProgress(result);
         return result;
+      }
+
+      function showStep(index) {
+        const steps = getSteps();
+        currentStep = Math.max(0, Math.min(index, steps.length - 1));
+        [...form.querySelectorAll(".rt-category")].forEach((el, i) => el.hidden = i !== currentStep);
+        finalResult.hidden = true;
+        form.hidden = false;
+        finished = false;
+        updateScore();
+        errorBox.style.display = "none";
+      }
+
+      function draw() {
+        form.innerHTML = RatingTool.renderForm(currentSys);
+        currentStep = 0;
+        finished = false;
+        form.hidden = false;
+        finalResult.hidden = true;
+        [...form.querySelectorAll(".rt-category")].forEach((el, i) => el.hidden = i !== 0);
+        updateScore();
+      }
+
+      function finish() {
+        const title = titleInput.value.trim();
+        const result = updateScore();
+        const errors = [];
+        if (!title) errors.push("Add a title before finishing.");
+        if (result.answered < result.total)
+          errors.push(`Please answer all ${result.total} questions before finishing (${result.answered} answered).`);
+
+        titleInput.classList.toggle("field-error", !title);
+        if (errors.length) {
+          errorBox.innerHTML = errors.join("<br>");
+          errorBox.style.display = "block";
+          if (!title) titleInput.focus();
+          return;
+        }
+
+        errorBox.style.display = "none";
+        finished = true;
+        form.hidden = true;
+        finalResult.hidden = false;
+        updateProgress(result);
+        finalResult.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
       raterToggleBtn.addEventListener("click", () => {
@@ -232,7 +323,18 @@
         draw();
       });
 
-      const errorBox = document.getElementById("rt-error");
+      prevBtn.addEventListener("click", () => {
+        if (!finished && currentStep > 0) showStep(currentStep - 1);
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (finished) return;
+        const steps = getSteps();
+        if (currentStep === steps.length - 1) finish();
+        else showStep(currentStep + 1);
+      });
+
+      reviseBtn.addEventListener("click", () => showStep(currentStep));
 
       form.addEventListener("change", () => {
         updateScore();
@@ -246,21 +348,8 @@
 
       document.getElementById("save-btn").addEventListener("click", () => {
         const title = titleInput.value.trim();
-        const result = updateScore();
-        const errors = [];
-        if (!title) errors.push("Add a title before downloading.");
-        if (result.answered === 0) errors.push("Answer at least one question before downloading.");
-
-        titleInput.classList.toggle("field-error", !title);
-
-        if (errors.length) {
-          errorBox.innerHTML = errors.join("<br>");
-          errorBox.style.display = "block";
-          if (!title) titleInput.focus();
-          return;
-        }
-
-        errorBox.style.display = "none";
+        const result = RatingTool.computeScore(currentSys, form);
+        if (!finished || !title || result.answered < result.total) return;
         shareCard.innerHTML = RatingTool.renderShareCard(currentSys, title, result);
         modal.classList.add("is-open");
       });
@@ -272,7 +361,8 @@
       document.getElementById("download-btn").addEventListener("click", () => {
         html2canvas(shareCard, { backgroundColor: null, scale: 2 }).then(canvas => {
           const link = document.createElement("a");
-          const slug = (titleInput.value.trim() || "rating").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+          const slug = (titleInput.value.trim() || "rating").toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
           link.download = `${slug}-rating.png`;
           link.href = canvas.toDataURL("image/png");
           link.click();
