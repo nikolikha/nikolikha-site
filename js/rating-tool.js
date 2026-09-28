@@ -118,7 +118,10 @@ const RatingTool = (() => {
       const color = SWATCH_CYCLE[ci % SWATCH_CYCLE.length];
       const pct = Math.max(0, Math.min(100, (result.categoryScores[ci] / cat.weightPct) * 100));
       return `<div class="sc-bar-row">
-        <span>${cat.name}</span>
+        <div class="sc-bar-head">
+          <span>${cat.name}</span>
+          <strong>${result.categoryScores[ci].toFixed(2)} / ${cat.weightPct}</strong>
+        </div>
         <div class="sc-bar-track"><div class="sc-bar-fill" style="width:${pct}%;background:${color};"></div></div>
       </div>`;
     }).join("");
