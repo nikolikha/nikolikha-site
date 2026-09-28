@@ -483,6 +483,96 @@ section:last-of-type{ border-bottom: none; }
 .rt-bar-fill{ height:100%; transition: width .3s ease; }
 .rt-bar-score{ opacity:.85; }
 
+/* step-by-step rating wizard */
+.rt-wizard{ max-width: 900px; margin: 0 auto; }
+
+.rt-wizard-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:14px;
+}
+
+.rt-step-title{
+  font-size:clamp(1.35rem,3vw,2rem);
+  font-weight:700;
+  margin-top:4px;
+}
+
+.rt-step-count{
+  font-size:.9rem;
+  opacity:.7;
+  white-space:nowrap;
+}
+
+.rt-progress-track{
+  height:5px;
+  background:rgba(0,0,0,.10);
+  border-radius:99px;
+  overflow:hidden;
+  margin-bottom:24px;
+}
+
+.rt-progress-fill{
+  height:100%;
+  width:0;
+  background:var(--peach-deep);
+  transition:width .25s ease;
+}
+
+.rt-wizard .rt-category{ margin-bottom:0; }
+
+.rt-wizard-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:24px;
+}
+
+.rt-answer-progress{
+  text-align:center;
+  flex:1;
+}
+
+.rt-final-result{ margin-top:28px; }
+
+.rt-final-result[hidden]{ display:none; }
+
+.rt-final-result .rt-result{
+  max-width:700px;
+  margin:0 auto;
+}
+
+.rt-wizard .rt-title-row{ margin-bottom:22px; }
+
+.rt-wizard .rt-title-row input{ width:100%; }
+
+.sc-bar-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:5px;
+}
+
+.sc-bar-head strong{
+  font-size:.9rem;
+  white-space:nowrap;
+}
+
+@media (max-width:600px){
+  .rt-wizard-actions{ flex-wrap:wrap; }
+
+  .rt-answer-progress{
+    order:3;
+    flex-basis:100%;
+  }
+
+  .rt-step-title{ font-size:1.25rem; }
+}
+
 /* share modal + downloadable result card */
 .share-modal{
   position: fixed; inset:0; background: rgba(74,55,40,.85); display:none;
