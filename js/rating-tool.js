@@ -119,8 +119,8 @@ const RatingTool = (() => {
       const pct = Math.max(0, Math.min(100, (result.categoryScores[ci] / cat.weightPct) * 100));
       return `<div class="sc-bar-row">
         <div class="sc-bar-head">
-          <span>${cat.name}</span>
-          <strong>${result.categoryScores[ci].toFixed(2)} / ${cat.weightPct}</strong>
+          <span class="rt-bar-label">${cat.name}</span>
+          <span class="rt-bar-score">${result.categoryScores[ci].toFixed(2)} / ${cat.weightPct}</span>
         </div>
         <div class="sc-bar-track"><div class="sc-bar-fill" style="width:${pct}%;background:${color};"></div></div>
       </div>`;
