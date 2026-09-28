@@ -81,7 +81,7 @@ const RatingTool = (() => {
     return {
       categoryScores,
       overall,
-      ratingOutOf10: Math.round(overall * 10) / 100, // round(overall/10, 1)
+      ratingOutOf10: Math.round(overall * 10) / 100, // round(overall/10, 2)
       stars: mround(overall / 20, 0.5),
       grade, gradeLabel: label, gradeEmoji: emoji,
       answered, total
@@ -97,7 +97,7 @@ const RatingTool = (() => {
       html += `<div class="rt-bar-row">
         <span class="rt-bar-label">${cat.name}</span>
         <div class="rt-bar-track"><div class="rt-bar-fill" style="width:${pct}%;background:${color};"></div></div>
-        <span class="rt-bar-score">${result.categoryScores[ci].toFixed(1)} / ${cat.weightPct}</span>
+        <span class="rt-bar-score">${result.categoryScores[ci].toFixed(2)} / ${cat.weightPct}</span>
       </div>`;
     });
     html += `</div>`;
@@ -126,7 +126,7 @@ const RatingTool = (() => {
     return `
       <div class="sc-eyebrow">${sys.label}</div>
       <div class="sc-title">${title || "Untitled"}</div>
-      <div class="sc-score">${result.overall.toFixed(1)}<span class="sc-score-max">/100</span></div>
+      <div class="sc-score">${result.overall.toFixed(2)}<span class="sc-score-max">/100</span></div>
       <div class="sc-stars">${renderStars(result.stars)}</div>
       <div class="sc-grade">${result.gradeEmoji} ${result.grade} &middot; ${result.gradeLabel}</div>
       <div class="sc-bars">${bars}</div>
