@@ -9,6 +9,7 @@ const SITE_CONFIG = {
     { label: "Instagram", url: "https://instagram.com/nikolikha", icon: "instagram" },
     { label: "Letterboxd", url: "https://letterboxd.com/nikolikha/", icon: "letterboxd" },
     { label: "Twitter", url: "https://x.com/was_nikolikha", icon: "twitter" },
+    { label: "Tiktok", url: "https://www.tiktok.com/@nikolikha", icon: "tiktok"},
     { label: "Spotify", url: "https://open.spotify.com/user/annabethclaryeaton", icon: "spotify" }
   ],
 
