@@ -515,7 +515,7 @@ const RATING_SYSTEMS = {
         ]
       },
       {
-        "name": "Recommendabiity/Rewatchability",
+        "name": "Recommendability/Rewatchability",
         "weightPct": 10.0,
         "questions": [
           {
