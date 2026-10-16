@@ -8,6 +8,7 @@ const SOCIAL_ICONS = {
   letterboxd: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="12" r="5"/><circle cx="17" cy="12" r="5"/></svg>',
   goodreads: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h9a3 3 0 0 1 3 3v13l-3-1.6L12 20l-3-1.6L6 20V4Z"/><path d="M9 8h6M9 11h6"/></svg>',
   twitter: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H21.6L15.6 9.9L22.7 21H17.2L12.9 14.9L8 21H5.3L11.7 13.6L4.9 3H10.5L14.4 8.6L18.9 3ZM17.9 19.3H19.4L9.8 4.6H8.2L17.9 19.3Z"/></svg>',
+  tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/></svg>',
   spotify: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M7 9.5C10.5 8.4 15 8.7 17.3 10.4M7.5 12.5C10.3 11.7 13.9 11.9 16 13.3M8 15.3C10.2 14.7 12.9 14.9 14.7 16" stroke-linecap="round"/></svg>',
   default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/></svg>'
 };
